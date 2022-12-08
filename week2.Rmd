@@ -1,0 +1,24 @@
+---
+title: "Coursera Data products week2 assignment"
+author: "Ayako Nagao"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 8 DEC 2022  
+```{r map, warning=FALSE}
+library(leaflet)
+tokyo <- data.frame(lat=35.652832,lng=139.839478)
+map <- tokyo %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup='Tokyo')
+
+map
+
+
+```
+
