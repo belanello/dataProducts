@@ -1,6 +1,31 @@
-### coursera Developing Data Products Week3 Assignment  
+---
+title: "Developing Data Products Week3 assignment"
+author: "Ayako Nagao"
+date: "12/10/2022"
+output: ioslides_presentation
+---
 
-```{r warning=FALSE,message=FALSE}
-library(plotly)
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 ```
+
+## UK gas comsumption  
+
+```{r plot, warning=FALSE,message=FALSE}
+library(plotly)
+library(datasets)
+data("UKgas")
+ukgas <- data.frame(matrix(UKgas,nrow = 27,byrow = TRUE))
+colnames(ukgas) <- c('Q1','Q2','Q3','Q4')
+ukgas$year <- as.ts(seq(1960,1986))
+fig <- plot_ly(ukgas,x=~year)
+fig <- fig %>% add_trace(y = ~Q1, name = 'Q1', mode = 'lines+markers')
+fig <- fig %>% add_trace(y = ~Q2, name = 'Q2', mode = 'lines+markers')
+fig <- fig %>% add_trace(y = ~Q3, name = 'Q3', mode = 'lines+markers')
+fig <- fig %>% add_trace(y = ~Q4, name = 'Q4', mode = 'lines+markers')
+fig <- fig %>% layout(title='Quarterly UK gas consumption from 1960Q1 to 1986Q4',
+                      yaxis=list(title='gas consumption in millions of therms'))
+fig
+```
+
+
